@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-person-gear me-2"></i>
+                Admin CRUD Simulator
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Inicio</a>
+                <a class="nav-link" href="/list">Listar Admins</a>
+                <a class="nav-link" href="/create">Crear Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Actividad 5: Ver un objeto -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">
+                            <i class="bi bi-person-circle me-2"></i>
+                            Detalles del Administrador
+                        </h4>
+                        <a href="/list" class="btn btn-light btn-sm">
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Volver a la Lista
+                        </a>
+                    </div>
+                    <div class="card-body" th:if="${admin}">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-hash me-1"></i>
+                                        ID del Sistema
+                                    </h6>
+                                    <p class="fs-5 fw-bold text-primary mb-0" th:text="${admin.id}"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-person me-1"></i>
+                                        Nombre Completo
+                                    </h6>
+                                    <p class="fs-5 mb-0" th:text="${admin.name}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-envelope me-1"></i>
+                                        Correo Electrónico
+                                    </h6>
+                                    <p class="fs-6 mb-0" th:text="${admin.email}"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-telephone me-1"></i>
+                                        Número de Teléfono
+                                    </h6>
+                                    <p class="fs-6 mb-0" th:text="${admin.phoneNumber}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-shield-check me-1"></i>
+                                        Rol del Sistema
+                                    </h6>
+                                    <span class="badge bg-secondary fs-6" th:text="${admin.rol}"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="border rounded p-3 h-100">
+                                    <h6 class="text-muted mb-2">
+                                        <i class="bi bi-key me-1"></i>
+                                        Contraseña
+                                    </h6>
+                                    <p class="fs-6 mb-0 text-muted">••••••••••</p>
+                                    <small class="text-muted">Por seguridad, la contraseña está oculta</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a href="/list" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                    Volver a la Lista
+                                </a>
+                                
+                                <!-- Actividad 6: Botón para borrar objeto -->
+                                <button type="button" 
+                                        class="btn btn-danger" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash me-2"></i>
+                                    Eliminar Administrador
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div th:if="${admin == null}" class="card-body text-center py-5">
+                        <i class="bi bi-exclamation-triangle display-1 text-warning"></i>
+                        <h5 class="mt-3">Administrador no encontrado</h5>
+                        <p class="text-muted">El administrador que buscas no existe o ha sido eliminado</p>
+                        <a href="/list" class="btn btn-primary">
+                            <i class="bi bi-arrow-left me-2"></i>
+                            Volver a la Lista
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal de confirmación para eliminar -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="deleteModalLabel">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            Confirmar Eliminación
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-3">¿Estás seguro de que deseas eliminar este administrador?</p>
+                        <div class="alert alert-warning">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Nombre:</strong> <span th:text="${admin?.name}"></span><br>
+                            <strong>Email:</strong> <span th:text="${admin?.email}"></span>
+                        </div>
+                        <p class="text-danger mb-0">
+                            <strong>Esta acción no se puede deshacer.</strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-2"></i>
+                            Cancelar
+                        </button>
+                        <form th:action="@{/delete/{id}(id=${admin?.id})}" method="post" class="btn btn-danger" onsubmit="return confirm('¿Estás seguro de eliminar este admin?');">
+                            <button type="submit" class="bi bi-trash me-2">Sí, Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
