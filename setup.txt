@@ -70,6 +70,9 @@ En la interfaz web, podrás realizar las siguientes operaciones sobre los admini
     -Ver todos los admins: Se listan todos los administradores registrados.
         -Eliminar un admin: Puedes eliminar un admin al seleccionar la opción correspondiente.
 
--Log de aplicación
+-Log de aplicación:
 Los logs de la aplicación están configurados para mostrar información detallada sobre las solicitudes HTTP y las consultas SQL ejecutadas por Hibernate.
 Si necesitas depurar o revisar la actividad de la aplicación, puedes revisar los logs en la consola de la terminal
+
+-Apagar la aplicación:
+para detener el servidor, presione CTRL+C en la terminal donde se ejecuta
