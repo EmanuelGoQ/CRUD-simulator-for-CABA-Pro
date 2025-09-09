@@ -1,0 +1,75 @@
+Instrucciones para correr el proyecto CRUD de Admins
+
+Este proyecto es una aplicación web construida con Spring Boot, utilizando H2 como base de datos en memoria, JPA y Hibernate para el acceso a la base de datos, y Thymeleaf para la renderización de vistas.
+
+Requisitos previos
+
+    Java 24: El proyecto está configurado para usar Java 24. Asegúrate de tener esta versión de Java instalada en tu sistema.
+    Si no la tienes, puedes descargarla desde la página oficial de Oracle o instalarla desde otro proveedor.
+
+Pasos para ejecutar el proyecto
+
+1. Verificar que tengas Java 24 instalado
+Abre una terminal o consola en esta carpeta y verifica que tienes Java 24 instalado ejecutando el siguiente comando:
+
+    java -version
+
+Deberías ver algo similar a:
+
+    java version "24.x.x"
+    Java(TM) SE Runtime Environment (build 24.x.x)
+    Java HotSpot(TM) 64-Bit Server VM (build 24.x.x, mixed mode)
+
+- Si no tienes Java 24, debes instalarlo antes de continuar.
+  Si tienes una versión diferente de Java, podrías configurar tu entorno para usar Java 24 antes de ejecutar el proyecto.
+
+2. Ejecución del proyecto
+No necesitas tener Maven instalado globalmente, ya que el proyecto incluye el Maven Wrapper (mvnw).
+Para compilar y ejecutar el proyecto, abre una terminal en el directorio raíz del proyecto y ejecuta:
+
+En Windows:
+    mvnw clean install
+
+En Linux/Mac:
+    ./mvnw clean install
+
+Este comando descargará las dependencias necesarias, compilará el proyecto y lo preparará para ejecutarse.
+
+3. Iniciar el servidor
+Para ejecutar la aplicación, puedes iniciar el servidor de la siguiente manera:
+
+En Windows:
+    mvnw spring-boot:run
+
+En Linux/Mac:
+    ./mvnw spring-boot:run
+
+Esto iniciará el servidor en el puerto 8080, según la configuración en el archivo application.properties:
+    (server.port=8080)
+
+3. Acceso a la aplicación web
+Una vez que el servidor esté en funcionamiento, abre tu navegador y accede a:
+
+Página principal del CRUD de Admins:
+    http://localhost:8080/
+
+Consola H2 para ver la base de datos (opcional):
+    http://localhost:8080/h2-console
+
+En esta página podrás ver la base de datos en memoria y realizar consultas SQL.
+Asegúrate de usar la siguiente configuración al iniciar sesión:
+
+    JDBC URL: jdbc:h2:mem:testdb
+    Usuario: sa
+    Contraseña: vacío (por defecto)
+
+-Usabilidad de la aplicación:
+En la interfaz web, podrás realizar las siguientes operaciones sobre los administradores (admins):
+
+    -Crear un nuevo admin: Se presenta un formulario donde podrás ingresar el nombre y otros datos.
+    -Ver todos los admins: Se listan todos los administradores registrados.
+        -Eliminar un admin: Puedes eliminar un admin al seleccionar la opción correspondiente.
+
+-Log de aplicación
+Los logs de la aplicación están configurados para mostrar información detallada sobre las solicitudes HTTP y las consultas SQL ejecutadas por Hibernate.
+Si necesitas depurar o revisar la actividad de la aplicación, puedes revisar los logs en la consola de la terminal
